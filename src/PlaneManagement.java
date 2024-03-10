@@ -1,0 +1,65 @@
+import java.util.Scanner;
+
+public class PlaneManagement {
+    public static void main(String[] args){
+        int[] seats=new int[4];
+        seats[0]=new int[14];
+        seats[1]=new int[12];
+        seats[2]=new int[12];
+        seats[3]=new int[14];
+        Scanner s=new Scanner(System.in);
+        System.out.println("Welcome to the Plane Management application ");
+        int option;
+        do{
+            for (int count1=0; count1<50; count1++){
+                System.out.print("*");
+            }
+            System.out.println();
+            System.out.print("*");
+            for(int count2=0; count2<18; count2++){
+                System.out.print(" ");
+            }
+            System.out.print("MENU OPTIONS");
+            for(int count2=0; count2<18; count2++){
+                System.out.print(" ");
+            }
+            System.out.print("*");
+            System.out.println();
+            for (int count1=0; count1<50; count1++){
+                System.out.print("*");
+            }
+            System.out.println();
+            System.out.println("1) Buy a seat");
+            System.out.println("2) Cancel a seat");
+            System.out.println("3) Find first available seat");
+            System.out.println("4) Show seating plan");
+            System.out.println("5) Print tickets information and total sales");
+            System.out.println("6) Search ticket");
+            System.out.println("0) Quit");
+            for (int count1=0; count1<50; count1++){
+                System.out.print("*");
+            }
+            System.out.println();
+            System.out.println("Please select an option");
+            option=s.nextInt();
+        }while(option!=0);
+    }
+    private static void buy_seat(){
+        System.out.println("Enter the row Letter:- ");
+        char rowLetter=s.next.chatAt(0);
+        rowLetter=rowLetter.toUpperCase();
+        System.out.println("Enter the desired seat number:- ");
+        int seatNo=s.nextInt();
+        if(seats[rowletter][seatNo]==0){
+
+        }
+
+
+
+
+
+
+    }
+
+}
+
