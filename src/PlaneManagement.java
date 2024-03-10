@@ -1,8 +1,9 @@
 import java.util.Scanner;
 
 public class PlaneManagement {
+    int[][] seats=new int[4][];
     public static void main(String[] args){
-        int[][] seats=new int[4][];
+//        int[][] seats=new int[4][];
         seats[0]=new int[14];
         seats[1]=new int[12];
         seats[2]=new int[12];
@@ -50,6 +51,7 @@ public class PlaneManagement {
         rowLetter=rowLetter.toUpperCase();
         System.out.println("Enter the desired seat number:- ");
         int seatNo=s.nextInt();
+        if(seats)
 
 
 
@@ -58,7 +60,22 @@ public class PlaneManagement {
 
 
     }
-    private static int rowLettercheck(){
+    private static int rowLettercheck(String letter1){
+        switch (letter1){
+            case ('A'):
+                return 0;
+                break;
+            case('B'):
+                return 1;
+                break;
+            case ('C'):
+                return 2;
+                break;
+            case('D'):
+                return 3;
+                break;
+        }
+
 
     }
 
