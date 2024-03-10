@@ -3,10 +3,15 @@ public class Person {
     private String surname;
     private String email;
 
-    public static void main(String[] args){
-        Person myObj=new Person();
-
-
+    public Person(String name, String surname, String email) {
+        this.name = name;
+        this.surname = surname;
+        this.email = email;
+    }
+    public void printall(){
+        System.out.println(name);
+        System.out.println(surname);
+        System.out.println(email);
     }
 
     public String getName() {

@@ -1,7 +1,8 @@
 public class Ticket {
     private String row;
     private double price;
-    private Person Person=new Person();
+    private Person Person;
+
 
     public String getRow() {
         return row;
@@ -26,4 +27,6 @@ public class Ticket {
     public void setPerson(Person person) {
         Person = person;
     }
+
+
 }
