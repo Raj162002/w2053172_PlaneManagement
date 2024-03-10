@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 public class PlaneManagement {
     public static void main(String[] args){
-        int[] seats=new int[4];
+        int[][] seats=new int[4][];
         seats[0]=new int[14];
         seats[1]=new int[12];
         seats[2]=new int[12];
@@ -46,18 +46,19 @@ public class PlaneManagement {
     }
     private static void buy_seat(){
         System.out.println("Enter the row Letter:- ");
-        char rowLetter=s.next.chatAt(0);
+        char rowLetter=s.next().chatAt(0);
         rowLetter=rowLetter.toUpperCase();
         System.out.println("Enter the desired seat number:- ");
         int seatNo=s.nextInt();
-        if(seats[rowletter][seatNo]==0){
-
-        }
 
 
 
 
 
+
+
+    }
+    private static int rowLettercheck(){
 
     }
 
