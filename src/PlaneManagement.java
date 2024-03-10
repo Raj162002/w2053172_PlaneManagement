@@ -52,6 +52,9 @@ public class PlaneManagement {
                 case 2:
                     cancel_seat();
                     break;
+                case 3:
+                    find_first_available();
+                    break;
             }
         } while (option != 0);
         s.close();
@@ -152,6 +155,44 @@ public class PlaneManagement {
 
         }
 
+    }
+
+    private static int[] linear_search(){
+        for(int count1=0;count1<seats.length;count1++ ){
+            for(int count2=0; count2<seats[count1].length;count2++){
+                if (seats[count1][count2]==0){
+                    return new int[]{count1,count2};
+                }
+            }
+        }
+        return null;
+    }
+
+    private static void find_first_available(){
+        int[] seatinfo=new int[2];
+        seatinfo=linear_search();
+        char rowLetter=rownum_converter(seatinfo[0]);
+        System.out.println("The first available seat is in "+ rowLetter+" +seatinfo[1]);
+
+    }
+
+    private static char rownum_converter(int rownum){
+        switch (rownum) {
+            case 0:
+                return 'A';
+//                break;
+            case 1:
+                return 'B';
+//                break;
+            case 2:
+                return 'C';
+//                break;
+            case 3:
+                return 'D';
+//                break;
+            default:
+                return ' ';
+        }
     }
 }
 
