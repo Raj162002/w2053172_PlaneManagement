@@ -45,6 +45,9 @@ public class PlaneManagement {
             System.out.println();
             System.out.println("Please select an option");
             option=s.nextInt();
+            if (option==1){
+                buy_seat();
+            }
         }while(option!=0);
     }
     private static void buy_seat(){
@@ -56,6 +59,27 @@ public class PlaneManagement {
         int rowLetterindex= rowLettercheck(rowLetter);
         if(seats[rowLetterindex][seatNo-1]==0){
             System.out.println("The seat is available");
+//            System.out.println("Would you like to purchase this seat? (Type yes/no)");
+//            String purchase=s.next();
+//            purchase=purchase.toLowerCase();
+            while (true) {
+                System.out.println("Would you like to purchase this seat? (Type yes/no)");
+                String purchase=s.next();
+                purchase=purchase.toLowerCase();
+                if (purchase.equals("yes")) {
+                    seats[rowLetterindex][seatNo - 1] = 1;
+                    System.out.println("Your Booking has been reserved");
+                    break;
+
+
+                } else if (purchase.equals("no")) {
+                    System.out.println("You will be redirected to the main menu");
+                    break;
+                } else {
+                    System.out.println("Invalid prompt try again");
+
+                }
+            }
         } else if (seats[rowLetterindex][seatNo-1]==1) {
             System.out.println("The seat is unavailable");
 
@@ -65,16 +89,16 @@ public class PlaneManagement {
     }
     private static int rowLettercheck(char letter1){
         switch (letter1){
-            case ('A'):
+            case 'A':
                 return 0;
 //                break;
-            case('B'):
+            case 'B':
                 return 1;
 //                break;
-            case ('C'):
+            case 'C':
                 return 2;
 //                break;
-            case('D'):
+            case 'D':
                 return 3;
 //                break;
             default:
