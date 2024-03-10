@@ -2,14 +2,15 @@ import java.util.Scanner;
 
 public class PlaneManagement {
     private static int[][] seats=new int[4][];
+    private static Scanner s=new Scanner(System.in);
 
     public static void main(String[] args){
-        int[][] seats=new int[4][];
+//        int[][] seats=new int[4][];
         seats[0]=new int[14];
         seats[1]=new int[12];
         seats[2]=new int[12];
         seats[3]=new int[14];
-        Scanner s=new Scanner(System.in);
+//        Scanner s=new Scanner(System.in);
         System.out.println("Welcome to the Plane Management application ");
         int option;
         do{
@@ -49,7 +50,7 @@ public class PlaneManagement {
     private static void buy_seat(){
         System.out.println("Enter the row Letter:- ");
         char rowLetter=s.next().charAt(0);
-        rowLetter=rowLetter.toUpperCase();
+        rowLetter=Character.toUpperCase(rowLetter);
         System.out.println("Enter the desired seat number:- ");
         int seatNo=s.nextInt();
         int rowLetterindex= rowLettercheck(rowLetter);
@@ -76,6 +77,8 @@ public class PlaneManagement {
             case('D'):
                 return 3;
 //                break;
+            default:
+                return -1;
         }
 
 
