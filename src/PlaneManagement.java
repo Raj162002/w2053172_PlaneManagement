@@ -1,9 +1,10 @@
 import java.util.Scanner;
 
 public class PlaneManagement {
-    int[][] seats=new int[4][];
+    private static int[][] seats=new int[4][];
+
     public static void main(String[] args){
-//        int[][] seats=new int[4][];
+        int[][] seats=new int[4][];
         seats[0]=new int[14];
         seats[1]=new int[12];
         seats[2]=new int[12];
@@ -47,33 +48,34 @@ public class PlaneManagement {
     }
     private static void buy_seat(){
         System.out.println("Enter the row Letter:- ");
-        char rowLetter=s.next().chatAt(0);
+        char rowLetter=s.next().charAt(0);
         rowLetter=rowLetter.toUpperCase();
         System.out.println("Enter the desired seat number:- ");
         int seatNo=s.nextInt();
-        if(seats)
+        int rowLetterindex= rowLettercheck(rowLetter);
+        if(seats[rowLetterindex][seatNo-1]==0){
+            System.out.println("The seat is available");
+        } else if (seats[rowLetterindex][seatNo-1]==1) {
+            System.out.println("The seat is unavailable");
 
-
-
-
-
+        }
 
 
     }
-    private static int rowLettercheck(String letter1){
+    private static int rowLettercheck(char letter1){
         switch (letter1){
             case ('A'):
                 return 0;
-                break;
+//                break;
             case('B'):
                 return 1;
-                break;
+//                break;
             case ('C'):
                 return 2;
-                break;
+//                break;
             case('D'):
                 return 3;
-                break;
+//                break;
         }
 
 
