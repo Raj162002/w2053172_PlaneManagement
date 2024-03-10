@@ -1,34 +1,34 @@
 import java.util.Scanner;
 
 public class PlaneManagement {
-    private static int[][] seats=new int[4][];
-    private static Scanner s=new Scanner(System.in);
+    private static int[][] seats = new int[4][];
+    private static Scanner s = new Scanner(System.in);
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
 //        int[][] seats=new int[4][];
-        seats[0]=new int[14];
-        seats[1]=new int[12];
-        seats[2]=new int[12];
-        seats[3]=new int[14];
+        seats[0] = new int[14];
+        seats[1] = new int[12];
+        seats[2] = new int[12];
+        seats[3] = new int[14];
 //        Scanner s=new Scanner(System.in);
         System.out.println("Welcome to the Plane Management application ");
         int option;
-        do{
-            for (int count1=0; count1<50; count1++){
+        do {
+            for (int count1 = 0; count1 < 50; count1++) {
                 System.out.print("*");
             }
             System.out.println();
             System.out.print("*");
-            for(int count2=0; count2<18; count2++){
+            for (int count2 = 0; count2 < 18; count2++) {
                 System.out.print(" ");
             }
             System.out.print("MENU OPTIONS");
-            for(int count2=0; count2<18; count2++){
+            for (int count2 = 0; count2 < 18; count2++) {
                 System.out.print(" ");
             }
             System.out.print("*");
             System.out.println();
-            for (int count1=0; count1<50; count1++){
+            for (int count1 = 0; count1 < 50; count1++) {
                 System.out.print("*");
             }
             System.out.println();
@@ -39,13 +39,13 @@ public class PlaneManagement {
             System.out.println("5) Print tickets information and total sales");
             System.out.println("6) Search ticket");
             System.out.println("0) Quit");
-            for (int count1=0; count1<50; count1++){
+            for (int count1 = 0; count1 < 50; count1++) {
                 System.out.print("*");
             }
             System.out.println();
             System.out.println("Please select an option");
-            option=s.nextInt();
-            switch (option){
+            option = s.nextInt();
+            switch (option) {
                 case 1:
                     buy_seat();
                     break;
@@ -53,25 +53,27 @@ public class PlaneManagement {
                     cancel_seat();
                     break;
             }
-        }
-        }while(option!=0);
+        } while (option != 0);
+        s.close();
     }
-    private static void buy_seat(){
+
+
+    private static void buy_seat() {
         System.out.println("Enter the row Letter:- ");
-        char rowLetter=s.next().charAt(0);
-        rowLetter=Character.toUpperCase(rowLetter);
+        char rowLetter = s.next().charAt(0);
+        rowLetter = Character.toUpperCase(rowLetter);
         System.out.println("Enter the desired seat number:- ");
-        int seatNo=s.nextInt();
-        int rowLetterindex= rowLettercheck(rowLetter);
-        if(seats[rowLetterindex][seatNo-1]==0){
+        int seatNo = s.nextInt();
+        int rowLetterindex = rowLettercheck(rowLetter);
+        if (seats[rowLetterindex][seatNo - 1] == 0) {
             System.out.println("The seat is available");
 //            System.out.println("Would you like to purchase this seat? (Type yes/no)");
 //            String purchase=s.next();
 //            purchase=purchase.toLowerCase();
             while (true) {
                 System.out.println("Would you like to purchase this seat? (Type yes/no)");
-                String purchase=s.next();
-                purchase=purchase.toLowerCase();
+                String purchase = s.next();
+                purchase = purchase.toLowerCase();
                 if (purchase.equals("yes")) {
                     seats[rowLetterindex][seatNo - 1] = 1;
                     System.out.println("Your Booking has been reserved");
@@ -86,15 +88,16 @@ public class PlaneManagement {
 
                 }
             }
-        } else if (seats[rowLetterindex][seatNo-1]==1) {
+        } else if (seats[rowLetterindex][seatNo - 1] == 1) {
             System.out.println("The seat is unavailable");
 
         }
 
 
     }
-    private static int rowLettercheck(char letter1){
-        switch (letter1){
+
+    private static int rowLettercheck(char letter1) {
+        switch (letter1) {
             case 'A':
                 return 0;
 //                break;
@@ -113,22 +116,23 @@ public class PlaneManagement {
 
 
     }
-    private static void cancel_seat(){
+
+    private static void cancel_seat() {
         System.out.println("Enter the row Letter:- ");
-        char rowLetter=s.next().charAt(0);
-        rowLetter=Character.toUpperCase(rowLetter);
+        char rowLetter = s.next().charAt(0);
+        rowLetter = Character.toUpperCase(rowLetter);
         System.out.println("Enter the desired seat number:- ");
-        int seatNo=s.nextInt();
-        int rowLetterindex= rowLettercheck(rowLetter);
-        if(seats[rowLetterindex][seatNo-1]==1){
+        int seatNo = s.nextInt();
+        int rowLetterindex = rowLettercheck(rowLetter);
+        if (seats[rowLetterindex][seatNo - 1] == 1) {
             System.out.println("The seat is reserved");
 //            System.out.println("Would you like to purchase this seat? (Type yes/no)");
 //            String purchase=s.next();
 //            purchase=purchase.toLowerCase();
             while (true) {
                 System.out.println("Would you like to cancel this seat? (Type yes/no)");
-                String purchase=s.next();
-                purchase=purchase.toLowerCase();
+                String purchase = s.next();
+                purchase = purchase.toLowerCase();
                 if (purchase.equals("yes")) {
                     seats[rowLetterindex][seatNo - 1] = 0;
                     System.out.println("Your cancellation is confirmed");
@@ -143,10 +147,11 @@ public class PlaneManagement {
 
                 }
             }
-        } else if (seats[rowLetterindex][seatNo-1]==0) {
+        } else if (seats[rowLetterindex][seatNo - 1] == 0) {
             System.out.println("The seat is available");
 
         }
 
+    }
 }
 
