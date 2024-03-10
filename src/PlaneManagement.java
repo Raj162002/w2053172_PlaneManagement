@@ -45,9 +45,15 @@ public class PlaneManagement {
             System.out.println();
             System.out.println("Please select an option");
             option=s.nextInt();
-            if (option==1){
-                buy_seat();
+            switch (option){
+                case 1:
+                    buy_seat();
+                    break;
+                case 2:
+                    cancel_seat();
+                    break;
             }
+        }
         }while(option!=0);
     }
     private static void buy_seat(){
@@ -107,6 +113,40 @@ public class PlaneManagement {
 
 
     }
+    private static void cancel_seat(){
+        System.out.println("Enter the row Letter:- ");
+        char rowLetter=s.next().charAt(0);
+        rowLetter=Character.toUpperCase(rowLetter);
+        System.out.println("Enter the desired seat number:- ");
+        int seatNo=s.nextInt();
+        int rowLetterindex= rowLettercheck(rowLetter);
+        if(seats[rowLetterindex][seatNo-1]==1){
+            System.out.println("The seat is reserved");
+//            System.out.println("Would you like to purchase this seat? (Type yes/no)");
+//            String purchase=s.next();
+//            purchase=purchase.toLowerCase();
+            while (true) {
+                System.out.println("Would you like to cancel this seat? (Type yes/no)");
+                String purchase=s.next();
+                purchase=purchase.toLowerCase();
+                if (purchase.equals("yes")) {
+                    seats[rowLetterindex][seatNo - 1] = 0;
+                    System.out.println("Your cancellation is confirmed");
+                    break;
+
+
+                } else if (purchase.equals("no")) {
+                    System.out.println("You will be redirected to the main menu");
+                    break;
+                } else {
+                    System.out.println("Invalid prompt try again");
+
+                }
+            }
+        } else if (seats[rowLetterindex][seatNo-1]==0) {
+            System.out.println("The seat is available");
+
+        }
 
 }
 
