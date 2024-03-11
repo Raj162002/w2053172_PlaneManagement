@@ -82,6 +82,7 @@ public class PlaneManagement {
                 String purchase = s.next();
                 purchase = purchase.toLowerCase();
                 if (purchase.equals("yes")) {
+
                     seats[rowLetterindex][seatNo - 1] = 1;
                     System.out.println("Your Booking has been reserved");
                     break;
@@ -99,6 +100,7 @@ public class PlaneManagement {
             System.out.println("The seat is unavailable");
 
         }
+
 
 
     }

@@ -8,11 +8,6 @@ public class Person {
         this.surname = surname;
         this.email = email;
     }
-    public void printall(){
-        System.out.println(name);
-        System.out.println(surname);
-        System.out.println(email);
-    }
 
     public String getName() {
         return name;
@@ -37,6 +32,10 @@ public class Person {
     public void setEmail(String email) {
         this.email = email;
     }
-
+    public void printall(){
+        System.out.println(this.name);
+        System.out.println(this.surname);
+        System.out.println(this.email);
+    }
 
 }
