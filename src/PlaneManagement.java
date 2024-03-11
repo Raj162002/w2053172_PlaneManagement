@@ -4,6 +4,10 @@ public class PlaneManagement {
     private static int[][] seats = new int[4][];
     private static Scanner s = new Scanner(System.in);
 
+    private static int price_seat;
+
+    private static Ticket[] ticketsArray=new Ticket[52];
+
     public static void main(String[] args) {
 //        int[][] seats=new int[4][];
         seats[0] = new int[14];
@@ -66,6 +70,7 @@ public class PlaneManagement {
 
 
     private static void buy_seat() {
+
         System.out.println("Enter the row Letter:- ");
         char rowLetter = s.next().charAt(0);
         rowLetter = Character.toUpperCase(rowLetter);
@@ -84,7 +89,30 @@ public class PlaneManagement {
                 if (purchase.equals("yes")) {
 
                     seats[rowLetterindex][seatNo - 1] = 1;
-                    System.out.println("Your Booking has been reserved");
+//                    System.out.println("Your Booking has been reserved");
+                    System.out.println();
+                    System.out.println("Enter your name:- ");
+                    String name=s.next();
+                    System.out.println("Enter your surname:- ");
+                    String surname=s.next();
+                    System.out.println("Enter your email:- ");
+                    String email=s.next();
+                    Person person=new Person(name,surname,email);
+                    if (seatNo<6){
+                        price_seat=200;
+                    } else if (seatNo<10) {
+                        price_seat=150;
+                        
+                    }
+                    else {
+                        price_seat=180;
+                    }
+                    Ticket ticket=new Ticket(rowLetter,seatNo,price_seat,person);
+                    for (int newCount=0; newCount<ticketsArray.length;newCount++){
+                        if (ticketsArray[newCount]==null){
+                            ticketsArray[newCount]=ticket;
+                        }
+                    }
                     break;
 
 
