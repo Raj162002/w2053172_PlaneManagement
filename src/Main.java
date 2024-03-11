@@ -3,7 +3,7 @@ public class Main {
         System.out.println("Hello world!");
         Person newObj=new Person("Raj","Ramakumar","ram@gmail.com");
         newObj.printall();
-        Ticket secondObj=new Ticket('a',23.2,newObj);
+        Ticket secondObj=new Ticket('a',23,newObj);
         secondObj.printTicket();
     }
 }

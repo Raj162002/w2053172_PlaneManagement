@@ -172,6 +172,12 @@ public class PlaneManagement {
                 purchase = purchase.toLowerCase();
                 if (purchase.equals("yes")) {
                     seats[rowLetterindex][seatNo - 1] = 0;
+                    for (int newCount=0; newCount< ticketsArray.length;newCount++){
+                        if ((ticketsArray[newCount].getRow()==rowLetter)&&(ticketsArray[newCount].getSeat()==seatNo)){
+                            ticketsArray[newCount]=null;
+
+                        }
+                    }
                     System.out.println("Your cancellation is confirmed");
                     break;
 
@@ -241,6 +247,9 @@ public class PlaneManagement {
             }
         }
         System.out.println();
+    }
+    private static void print_tickets_info(){
+
     }
 
 }

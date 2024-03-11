@@ -1,5 +1,5 @@
 public class Ticket {
-    private String row;
+    private char row;
     private int seat;
 
     public int getSeat() {
@@ -45,8 +45,8 @@ public class Ticket {
     }
 
     public void printTicket(){
-        System.out.println(row);
-
+        System.out.println(this.row);
+        System.out.println(this.seat);
         this.person.printall();
     }
 
