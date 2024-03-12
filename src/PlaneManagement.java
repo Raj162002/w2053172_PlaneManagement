@@ -65,6 +65,9 @@ public class PlaneManagement {
                 case 5:
                     print_tickets_info();
                     break;
+                case 6:
+                    search_ticket();
+                    break;
 
             }
         } while (option != 0);
@@ -264,6 +267,26 @@ public class PlaneManagement {
             }
         }
         System.out.println("The total sales amount for tickets is "+totalSales);
+
+    }
+    private static void search_ticket(){
+        System.out.println("Enter the row letter ");
+        char rowLetter = s.next().charAt(0);
+        rowLetter = Character.toUpperCase(rowLetter);
+        System.out.println("Enter the desired seat number:- ");
+        int seatNo = s.nextInt();
+        int rowLetterindex = rowLettercheck(rowLetter);
+        if (seats[rowLetterindex][seatNo - 1] == 0){
+            System.out.println("The seat unavailable ");
+        }
+        else if (seats[rowLetterindex][seatNo - 1] == 1){
+            System.out.println("The details of the ticket and the person who booked it ");
+            for(int i=0;i<ticketsArray.length;i++){
+                if((ticketsArray[i].getRow()==rowLetter)&&(ticketsArray[i].getSeat()==seatNo)){
+                    ticketsArray[i].printTicket();
+                }
+            }
+        }
 
     }
 
