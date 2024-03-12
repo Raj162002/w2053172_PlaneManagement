@@ -62,6 +62,9 @@ public class PlaneManagement {
                 case 4:
                     show_seating_plan();
                     break;
+                case 5:
+                    print_tickets_info();
+                    break;
 
             }
         } while (option != 0);
@@ -111,6 +114,8 @@ public class PlaneManagement {
                     for (int newCount=0; newCount<ticketsArray.length;newCount++){
                         if (ticketsArray[newCount]==null){
                             ticketsArray[newCount]=ticket;
+                            break;
+
                         }
                     }
                     break;
@@ -249,6 +254,16 @@ public class PlaneManagement {
         System.out.println();
     }
     private static void print_tickets_info(){
+        double totalSales=0;
+        for (int i=0; i<ticketsArray.length; i++){
+            if (ticketsArray[i] !=null) {
+                System.out.println();
+                ticketsArray[i].printTicket();
+                totalSales+=ticketsArray[i].getPrice();
+                System.out.println("End of this ticket");
+            }
+        }
+        System.out.println("The total sales amount for tickets is "+totalSales);
 
     }
 
