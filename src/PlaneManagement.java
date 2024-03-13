@@ -9,12 +9,10 @@ public class PlaneManagement {
     private static Ticket[] ticketsArray=new Ticket[52];
 
     public static void main(String[] args) {
-//        int[][] seats=new int[4][];
         seats[0] = new int[14];
         seats[1] = new int[12];
         seats[2] = new int[12];
         seats[3] = new int[14];
-//        Scanner s=new Scanner(System.in);
         System.out.println("Welcome to the Plane Management application ");
         int option;
         do {
@@ -85,9 +83,6 @@ public class PlaneManagement {
         int rowLetterindex = rowLettercheck(rowLetter);
         if (seats[rowLetterindex][seatNo - 1] == 0) {
             System.out.println("The seat is available");
-//            System.out.println("Would you like to purchase this seat? (Type yes/no)");
-//            String purchase=s.next();
-//            purchase=purchase.toLowerCase();
             while (true) {
                 System.out.println("Would you like to purchase this seat? (Type yes/no)");
                 String purchase = s.next();
@@ -171,9 +166,6 @@ public class PlaneManagement {
         int rowLetterindex = rowLettercheck(rowLetter);
         if (seats[rowLetterindex][seatNo - 1] == 1) {
             System.out.println("The seat is reserved");
-//            System.out.println("Would you like to purchase this seat? (Type yes/no)");
-//            String purchase=s.next();
-//            purchase=purchase.toLowerCase();
             while (true) {
                 System.out.println("Would you like to cancel this seat? (Type yes/no)");
                 String purchase = s.next();
