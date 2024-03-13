@@ -1,5 +1,4 @@
 public class Ticket {
-    private Ticket[] ticketarray=new Ticket[];
     private char row;
     private int seat;
 
