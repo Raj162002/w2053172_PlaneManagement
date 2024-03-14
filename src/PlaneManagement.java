@@ -223,8 +223,7 @@ public class PlaneManagement {
     }
 
     private static void find_first_available(){
-        int[] seatinfo=new int[2];
-        seatinfo=linear_search();
+        int[] seatinfo=linear_search();
         char rowLetter=rownum_converter(seatinfo[0]);
         System.out.println("The first available seat is in "+ rowLetter+(seatinfo[1]+1));
 
@@ -305,8 +304,8 @@ public class PlaneManagement {
         while(true) {
             try {
                 System.out.println(prompt);
-                int num= s.nextInt();
-                return num;
+                int numInput= s.nextInt();
+                return numInput;
             } catch (InputMismatchException e) {
                 s.nextLine();
                 System.out.println("Invalid input, please enter a number");
