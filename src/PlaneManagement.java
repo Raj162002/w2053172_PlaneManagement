@@ -77,61 +77,70 @@ public class PlaneManagement {
 
 
     private static void buy_seat() {
+        boolean validInput= true;
+        while(validInput) {
+            try {
+                System.out.println("Enter the row Letter:- ");
+                char rowLetter = s.next().charAt(0);
+                rowLetter = Character.toUpperCase(rowLetter);
+                int rowLetterindex = rowLettercheck(rowLetter);
+                int seatNo = getInt("Enter the desired seat number:- ");
+                if (seats[rowLetterindex][seatNo - 1] == 0) {
+                    System.out.println("The seat is available");
+                    while (true) {
+                        System.out.println("Would you like to purchase this seat? (Type yes/no)");
+                        String purchase = s.next();
+                        purchase = purchase.toLowerCase();
+                        if (purchase.equals("yes")) {
 
-        System.out.println("Enter the row Letter:- ");
-        char rowLetter = s.next().charAt(0);
-        rowLetter = Character.toUpperCase(rowLetter);
-        int seatNo = getInt("Enter the desired seat number:- ");
-        int rowLetterindex = rowLettercheck(rowLetter);
-        if (seats[rowLetterindex][seatNo - 1] == 0) {
-            System.out.println("The seat is available");
-            while (true) {
-                System.out.println("Would you like to purchase this seat? (Type yes/no)");
-                String purchase = s.next();
-                purchase = purchase.toLowerCase();
-                if (purchase.equals("yes")) {
-
-                    seats[rowLetterindex][seatNo - 1] = 1;
+                            seats[rowLetterindex][seatNo - 1] = 1;
 //                    System.out.println("Your Booking has been reserved");
-                    System.out.println();
-                    System.out.println("Enter your name:- ");
-                    String name=s.next();
-                    System.out.println("Enter your surname:- ");
-                    String surname=s.next();
-                    System.out.println("Enter your email:- ");
-                    String email=s.next();
-                    Person person=new Person(name,surname,email);
-                    if (seatNo<6){
-                        price_seat=200;
-                    } else if (seatNo<10) {
-                        price_seat=150;
+                            System.out.println();
+                            System.out.println("Enter your name:- ");
+                            String name = s.next();
+                            System.out.println("Enter your surname:- ");
+                            String surname = s.next();
+                            System.out.println("Enter your email:- ");
+                            String email = s.next();
+                            Person person = new Person(name, surname, email);
+                            if (seatNo < 6) {
+                                price_seat = 200;
+                            } else if (seatNo < 10) {
+                                price_seat = 150;
 
-                    }
-                    else {
-                        price_seat=180;
-                    }
-                    Ticket ticket=new Ticket(rowLetter,seatNo,price_seat,person);
-                    for (int newCount=0; newCount<ticketsArray.length;newCount++){
-                        if (ticketsArray[newCount]==null){
-                            ticketsArray[newCount]=ticket;
+                            } else {
+                                price_seat = 180;
+                            }
+                            Ticket ticket = new Ticket(rowLetter, seatNo, price_seat, person);
+                            for (int newCount = 0; newCount < ticketsArray.length; newCount++) {
+                                if (ticketsArray[newCount] == null) {
+                                    ticketsArray[newCount] = ticket;
+                                    System.out.println("Your Booking has been reserved");
+                                    break;
+
+                                }
+                            }
                             break;
+
+
+                        } else if (purchase.equals("no")) {
+                            System.out.println("You will be redirected to the main menu");
+                            break;
+                        } else {
+                            System.out.println("Invalid prompt try again");
 
                         }
                     }
-                    break;
-
-
-                } else if (purchase.equals("no")) {
-                    System.out.println("You will be redirected to the main menu");
-                    break;
-                } else {
-                    System.out.println("Invalid prompt try again");
+                } else if (seats[rowLetterindex][seatNo - 1] == 1) {
+                    System.out.println("The seat is unavailable");
 
                 }
+                validInput=false;
+            } catch (ArrayIndexOutOfBoundsException e) {
+                System.out.println("Invalid seat number or row letter");
+            } catch (IllegalArgumentException e) {
+                System.out.println("Invalid input for row letter");
             }
-        } else if (seats[rowLetterindex][seatNo - 1] == 1) {
-            System.out.println("The seat is unavailable");
-
         }
 
 
@@ -142,18 +151,14 @@ public class PlaneManagement {
         switch (letter1) {
             case 'A':
                 return 0;
-//                break;
             case 'B':
                 return 1;
-//                break;
             case 'C':
                 return 2;
-//                break;
             case 'D':
                 return 3;
-//                break;
             default:
-                return -1;
+                throw new IllegalArgumentException("Invalid row letter");
         }
 
 
@@ -165,35 +170,39 @@ public class PlaneManagement {
         rowLetter = Character.toUpperCase(rowLetter);
         int seatNo = getInt("Enter the desired seat number:- ");
         int rowLetterindex = rowLettercheck(rowLetter);
-        if (seats[rowLetterindex][seatNo - 1] == 1) {
-            System.out.println("The seat is reserved");
-            while (true) {
-                System.out.println("Would you like to cancel this seat? (Type yes/no)");
-                String purchase = s.next();
-                purchase = purchase.toLowerCase();
-                if (purchase.equals("yes")) {
-                    seats[rowLetterindex][seatNo - 1] = 0;
-                    for (int newCount=0; newCount< ticketsArray.length;newCount++){
-                        if ((ticketsArray[newCount].getRow()==rowLetter)&&(ticketsArray[newCount].getSeat()==seatNo)){
-                            ticketsArray[newCount]=null;
+        try {
+            if (seats[rowLetterindex][seatNo - 1] == 1) {
+                System.out.println("The seat is reserved");
+                while (true) {
+                    System.out.println("Would you like to cancel this seat? (Type yes/no)");
+                    String purchase = s.next();
+                    purchase = purchase.toLowerCase();
+                    if (purchase.equals("yes")) {
+                        seats[rowLetterindex][seatNo - 1] = 0;
+                        for (int newCount = 0; newCount < ticketsArray.length; newCount++) {
+                            if ((ticketsArray[newCount].getRow() == rowLetter) && (ticketsArray[newCount].getSeat() == seatNo)) {
+                                ticketsArray[newCount] = null;
 
+                            }
                         }
+                        System.out.println("Your cancellation is confirmed");
+                        break;
+
+
+                    } else if (purchase.equals("no")) {
+                        System.out.println("You will be redirected to the main menu");
+                        break;
+                    } else {
+                        System.out.println("Invalid prompt try again");
+
                     }
-                    System.out.println("Your cancellation is confirmed");
-                    break;
-
-
-                } else if (purchase.equals("no")) {
-                    System.out.println("You will be redirected to the main menu");
-                    break;
-                } else {
-                    System.out.println("Invalid prompt try again");
-
                 }
-            }
-        } else if (seats[rowLetterindex][seatNo - 1] == 0) {
-            System.out.println("The seat is available");
+            } else if (seats[rowLetterindex][seatNo - 1] == 0) {
+                System.out.println("The seat is available");
 
+            }
+        }catch (ArrayIndexOutOfBoundsException e) {
+            System.out.println("Invalid seat number or row letter");
         }
 
     }
@@ -213,7 +222,7 @@ public class PlaneManagement {
         int[] seatinfo=new int[2];
         seatinfo=linear_search();
         char rowLetter=rownum_converter(seatinfo[0]);
-        System.out.println("The first available seat is in "+ rowLetter+seatinfo[1]);
+        System.out.println("The first available seat is in "+ rowLetter+(seatinfo[1]+1));
 
     }
 
@@ -283,17 +292,19 @@ public class PlaneManagement {
     }
 
     private static int getInt(String prompt) {
-        try{
-            System.out.println(prompt);
-            return s.nextInt();
-        } catch (InputMismatchException e) {
-            s.nextLine();
-            return -1;
+        while(true) {
+            try {
+                System.out.println(prompt);
+                int num= s.nextInt();
+                return num;
+            } catch (InputMismatchException e) {
+                s.nextLine();
+                System.out.println("Invalid input, please enter a number");
+            }
         }
 
     }
 
-    private static boolean isValidseat
 
 }
 
