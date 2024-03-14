@@ -187,7 +187,10 @@ public class PlaneManagement {
                             for (int newCount = 0; newCount < ticketsArray.length; newCount++) {
                                 if(ticketsArray[newCount] != null) {
                                     if ((ticketsArray[newCount].getRow() == rowLetter) && (ticketsArray[newCount].getSeat() == seatNo)) {
+                                        String path = String.valueOf(rowLetter) + seatNo + ".txt";
+                                        ticketsArray[newCount].delete(path);
                                         ticketsArray[newCount] = null;
+                                        //Delete the ticket txt file
 
                                     }
                                 }

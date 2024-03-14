@@ -84,5 +84,14 @@ public class Ticket {
         }
     }
 
+    public void delete(String path){
+        File file = new File(path);
+        if(file.delete()){
+            System.out.println("File deleted successfully");
+        }else{
+            System.out.println("Failed to delete the file");
+        }
+    }
+
 
 }
