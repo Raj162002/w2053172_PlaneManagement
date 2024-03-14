@@ -32,11 +32,12 @@ public class Person {
     public void setEmail(String email) {
         this.email = email;
     }
-    public void printall(){
-        System.out.println("Name:- "+this.name);
-        System.out.println("Surname:- "+this.surname);
-        System.out.println("Email:- "+this.email);
-        System.out.println();
+    public String printall(){
+//        System.out.println("Name:- "+this.name);
+//        System.out.println("Surname:- "+this.surname);
+//        System.out.println("Email:- "+this.email);
+//        System.out.println();
+        return ("\n"+"Name:- "+this.name+"\n"+"Surname:- "+this.surname+"\n"+"Email:- "+this.email+"\n");
     }
 
 }
