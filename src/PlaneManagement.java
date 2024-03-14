@@ -1,3 +1,4 @@
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class PlaneManagement {
@@ -16,6 +17,7 @@ public class PlaneManagement {
         System.out.println("Welcome to the Plane Management application ");
         int option;
         do {
+
             for (int count1 = 0; count1 < 50; count1++) {
                 System.out.print("*");
             }
@@ -45,8 +47,7 @@ public class PlaneManagement {
                 System.out.print("*");
             }
             System.out.println();
-            System.out.println("Please select an option");
-            option = s.nextInt();
+            option = getInt("Please select an option");
             switch (option) {
                 case 1:
                     buy_seat();
@@ -66,7 +67,9 @@ public class PlaneManagement {
                 case 6:
                     search_ticket();
                     break;
-
+                default:
+                    System.out.println("Invalid option Try again");
+                    break;
             }
         } while (option != 0);
         s.close();
@@ -78,8 +81,7 @@ public class PlaneManagement {
         System.out.println("Enter the row Letter:- ");
         char rowLetter = s.next().charAt(0);
         rowLetter = Character.toUpperCase(rowLetter);
-        System.out.println("Enter the desired seat number:- ");
-        int seatNo = s.nextInt();
+        int seatNo = getInt("Enter the desired seat number:- ");
         int rowLetterindex = rowLettercheck(rowLetter);
         if (seats[rowLetterindex][seatNo - 1] == 0) {
             System.out.println("The seat is available");
@@ -103,7 +105,7 @@ public class PlaneManagement {
                         price_seat=200;
                     } else if (seatNo<10) {
                         price_seat=150;
-                        
+
                     }
                     else {
                         price_seat=180;
@@ -161,8 +163,7 @@ public class PlaneManagement {
         System.out.println("Enter the row Letter:- ");
         char rowLetter = s.next().charAt(0);
         rowLetter = Character.toUpperCase(rowLetter);
-        System.out.println("Enter the desired seat number:- ");
-        int seatNo = s.nextInt();
+        int seatNo = getInt("Enter the desired seat number:- ");
         int rowLetterindex = rowLettercheck(rowLetter);
         if (seats[rowLetterindex][seatNo - 1] == 1) {
             System.out.println("The seat is reserved");
@@ -265,8 +266,7 @@ public class PlaneManagement {
         System.out.println("Enter the row letter ");
         char rowLetter = s.next().charAt(0);
         rowLetter = Character.toUpperCase(rowLetter);
-        System.out.println("Enter the desired seat number:- ");
-        int seatNo = s.nextInt();
+        int seatNo = getInt("Enter the desired seat number:- ");
         int rowLetterindex = rowLettercheck(rowLetter);
         if (seats[rowLetterindex][seatNo - 1] == 0){
             System.out.println("The seat unavailable ");
@@ -281,6 +281,19 @@ public class PlaneManagement {
         }
 
     }
+
+    private static int getInt(String prompt) {
+        try{
+            System.out.println(prompt);
+            return s.nextInt();
+        } catch (InputMismatchException e) {
+            s.nextLine();
+            return -1;
+        }
+
+    }
+
+    private static boolean isValidseat
 
 }
 
