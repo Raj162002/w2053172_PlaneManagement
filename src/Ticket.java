@@ -45,8 +45,7 @@ public class Ticket {
     }
 
     public void printTicket(){
-        System.out.println(this.row);
-        System.out.println(this.seat);
+        System.out.print("The reserved seat is "+this.row+this.seat);
         this.person.printall();
     }
 

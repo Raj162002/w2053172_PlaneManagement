@@ -33,9 +33,10 @@ public class Person {
         this.email = email;
     }
     public void printall(){
-        System.out.println(this.name);
-        System.out.println(this.surname);
-        System.out.println(this.email);
+        System.out.println("Name:- "+this.name);
+        System.out.println("Surname:- "+this.surname);
+        System.out.println("Email:- "+this.email);
+        System.out.println();
     }
 
 }

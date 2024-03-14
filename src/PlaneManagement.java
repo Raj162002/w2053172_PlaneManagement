@@ -65,6 +65,9 @@ public class PlaneManagement {
                 case 6:
                     search_ticket();
                     break;
+                case 0:
+                    System.out.println("Thank you for using the Plane Management application");
+                    break;
                 default:
                     System.out.println("Invalid option Try again");
                     break;
@@ -180,9 +183,11 @@ public class PlaneManagement {
                         if (purchase.equals("yes")) {
                             seats[rowLetterindex][seatNo - 1] = 0;
                             for (int newCount = 0; newCount < ticketsArray.length; newCount++) {
-                                if ((ticketsArray[newCount].getRow() == rowLetter) && (ticketsArray[newCount].getSeat() == seatNo)) {
-                                    ticketsArray[newCount] = null;
+                                if(ticketsArray[newCount] != null) {
+                                    if ((ticketsArray[newCount].getRow() == rowLetter) && (ticketsArray[newCount].getSeat() == seatNo)) {
+                                        ticketsArray[newCount] = null;
 
+                                    }
                                 }
                             }
                             System.out.println("Your cancellation is confirmed");
@@ -223,7 +228,8 @@ public class PlaneManagement {
     }
 
     private static void find_first_available(){
-        int[] seatinfo=linear_search();
+        int[] seatinfo=new int[2];
+        seatinfo=linear_search();
         char rowLetter=rownum_converter(seatinfo[0]);
         System.out.println("The first available seat is in "+ rowLetter+(seatinfo[1]+1));
 
@@ -304,8 +310,8 @@ public class PlaneManagement {
         while(true) {
             try {
                 System.out.println(prompt);
-                int numInput= s.nextInt();
-                return numInput;
+                int num= s.nextInt();
+                return num;
             } catch (InputMismatchException e) {
                 s.nextLine();
                 System.out.println("Invalid input, please enter a number");
