@@ -1,4 +1,5 @@
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 
@@ -67,7 +68,9 @@ public class Ticket {
                 //This part was added so that it will it get written even though the file exists.
                 fileWriter(path,content1,content2);
             }
-        }catch(IOException e){
+        } catch(FileNotFoundException e){
+            System.out.println("The file was not found");
+        } catch(IOException e){
             System.out.println("An error has occurred while creating a file");
         }
 
@@ -80,15 +83,15 @@ public class Ticket {
             fileWriter.close();
             System.out.println("Successfully wrote to the file");
         }catch(IOException e){
-            System.out.println("An error has occurred while creating a file");
+            System.out.println("An error has occurred while writing to the file");
         }
     }
 
     public void delete(String path){
         File file = new File(path);
-        if(file.delete()){
+        if (file.delete()) {
             System.out.println("File deleted successfully");
-        }else{
+        } else {
             System.out.println("Failed to delete the file");
         }
     }
