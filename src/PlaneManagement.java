@@ -235,8 +235,12 @@ public class PlaneManagement {
     private static void find_first_available(){
         int[] seatinfo=new int[2];
         seatinfo=linear_search();
-        char rowLetter=rownum_converter(seatinfo[0]);
-        System.out.println("The first available seat is in "+ rowLetter+(seatinfo[1]+1));
+        try {
+            char rowLetter = rownum_converter(seatinfo[0]);
+            System.out.println("The first available seat is in " + rowLetter + (seatinfo[1] + 1));
+        }catch (NullPointerException e){
+            System.out.println("No available seats,Null pointer exception");
+        }
 
     }
 
