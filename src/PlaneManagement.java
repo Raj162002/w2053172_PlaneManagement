@@ -276,24 +276,34 @@ public class PlaneManagement {
         System.out.println("The total sales amount for tickets is "+totalSales);
 
     }
-    private static void search_ticket(){
-        System.out.println("Enter the row letter ");
-        char rowLetter = s.next().charAt(0);
-        rowLetter = Character.toUpperCase(rowLetter);
-        int seatNo = getInt("Enter the desired seat number:- ");
-        int rowLetterindex = rowLettercheck(rowLetter);
-        if (seats[rowLetterindex][seatNo - 1] == 0){
-            System.out.println("The seat unavailable ");
-        }
-        else if (seats[rowLetterindex][seatNo - 1] == 1){
-            System.out.println("The details of the ticket and the person who booked it ");
-            for(int i=0;i<ticketsArray.length;i++){
-                if((ticketsArray[i].getRow()==rowLetter)&&(ticketsArray[i].getSeat()==seatNo)){
-                    ticketsArray[i].printTicket();
+    private static void search_ticket() {
+        while (true) {
+            try {
+                System.out.println("Enter the row letter ");
+                char rowLetter = s.next().charAt(0);
+                rowLetter = Character.toUpperCase(rowLetter);
+                int rowLetterindex = rowLettercheck(rowLetter);
+                int seatNo = getInt("Enter the desired seat number:- ");
+                if (seats[rowLetterindex][seatNo - 1] == 0) {
+                    System.out.println("The seat is available, No ticket has been booked for this seat");
+                } else if (seats[rowLetterindex][seatNo - 1] == 1) {
+                    System.out.println("The details of the ticket and the person who booked it ");
+                    for (Ticket ticket : ticketsArray) {
+                        if (ticket != null) {
+                            System.out.println();
+                            ticket.printTicket();
+                            System.out.println("End of this ticket");
+                        }
+                    }
                 }
+
+            break;
+            } catch (IllegalArgumentException e) {
+                System.out.println("Invalid input for row letter");
+            } catch (ArrayIndexOutOfBoundsException e) {
+                System.out.println("Invalid seat number or row letter");
             }
         }
-
     }
 
     private static int getInt(String prompt) {
