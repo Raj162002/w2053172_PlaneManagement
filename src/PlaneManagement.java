@@ -116,6 +116,8 @@ public class PlaneManagement {
                             for (int newCount = 0; newCount < ticketsArray.length; newCount++) {
                                 if (ticketsArray[newCount] == null) {
                                     ticketsArray[newCount] = ticket;
+                                    String path = String.valueOf(rowLetter) + seatNo + ".txt";
+                                    ticket.save(path, person.printall(), "The reserved seat is " + rowLetter + seatNo);
                                     System.out.println("Your Booking has been reserved");
                                     break;
 
