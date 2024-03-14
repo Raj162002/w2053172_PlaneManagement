@@ -5,8 +5,6 @@ public class PlaneManagement {
     private static int[][] seats = new int[4][];
     private static Scanner s = new Scanner(System.in);
 
-    private static int price_seat;
-
     private static Ticket[] ticketsArray=new Ticket[52];
 
     public static void main(String[] args) {
@@ -80,6 +78,7 @@ public class PlaneManagement {
         boolean validInput= true;
         while(validInput) {
             try {
+                int price_seat;
                 System.out.println("Enter the row Letter:- ");
                 char rowLetter = s.next().charAt(0);
                 rowLetter = Character.toUpperCase(rowLetter);
@@ -94,7 +93,6 @@ public class PlaneManagement {
                         if (purchase.equals("yes")) {
 
                             seats[rowLetterindex][seatNo - 1] = 1;
-//                    System.out.println("Your Booking has been reserved");
                             System.out.println();
                             System.out.println("Enter your name:- ");
                             String name = s.next();
@@ -203,6 +201,7 @@ public class PlaneManagement {
                     System.out.println("The seat is available");
 
                 }
+                validInput=false;
             } catch (ArrayIndexOutOfBoundsException e) {
                 System.out.println("Invalid seat number or row letter");
             } catch (IllegalArgumentException e) {
@@ -235,16 +234,12 @@ public class PlaneManagement {
         switch (rownum) {
             case 0:
                 return 'A';
-//                break;
             case 1:
                 return 'B';
-//                break;
             case 2:
                 return 'C';
-//                break;
             case 3:
                 return 'D';
-//                break;
             default:
                 return ' ';
         }
