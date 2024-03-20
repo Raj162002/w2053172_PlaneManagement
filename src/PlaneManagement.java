@@ -46,6 +46,7 @@ public class PlaneManagement {
             }
             System.out.println();
             option = getInt("Please select an option");
+            s.nextLine();
             switch (option) {
                 case 1:
                     buy_seat();
@@ -264,10 +265,10 @@ public class PlaneManagement {
             System.out.println();
             for (int element2: element1){
                 if (element2==0){
-                    System.out.print("O");
+                    System.out.print(" O ");
                 }
                 else {
-                    System.out.print("X");
+                    System.out.print(" X ");
                 }
             }
         }
@@ -299,7 +300,7 @@ public class PlaneManagement {
                 } else if (seats[rowLetterindex][seatNo - 1] == 1) {
                     System.out.println("The details of the ticket and the person who booked it ");
                     for (Ticket ticket : ticketsArray) {
-                        if (ticket != null) {
+                        if ((ticket != null)&&(ticket.getRow()==rowLetter)&&(ticket.getSeat()==seatNo)) {
                             System.out.println();
                             ticket.printTicket();
                             System.out.println("End of this ticket");
