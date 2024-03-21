@@ -235,8 +235,6 @@ public class PlaneManagement {
     }
 
     private static void find_first_available(){
-//        int[] seatinfo=new int[2];
-//        int[] seatinfo=linear_search();
         try {
             int[] seatinfo=linear_search();
             char rowLetter = rownum_converter(seatinfo[0]);
