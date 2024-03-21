@@ -51,6 +51,7 @@ public class Ticket {
 
     public void printTicket(){
         System.out.println("The reserved seat is "+this.row+this.seat);
+        System.out.println("The price of this ticket is:- "+this.price+"\u00a3");
         System.out.println(this.person.printall());
 //        String path=String.valueOf(this.row)+this.seat+".txt";
         //Since this.row is a char we had to use String.valueOf to convert it to string.

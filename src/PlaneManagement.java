@@ -45,7 +45,7 @@ public class PlaneManagement {
                 System.out.print("*");
             }
             System.out.println();
-            option = getInt("Please select an option");
+            option = getInt("Please select an option:- ");
             s.nextLine();
             switch (option) {
                 case 1:
@@ -83,7 +83,7 @@ public class PlaneManagement {
         while(validInput) {
             try {
                 int price_seat;
-                System.out.println("Enter the row Letter:- ");
+                System.out.print("Enter the row Letter:- ");
                 char rowLetter = s.next().charAt(0);
                 rowLetter = Character.toUpperCase(rowLetter);
                 int rowLetterindex = rowLettercheck(rowLetter);
@@ -98,11 +98,11 @@ public class PlaneManagement {
 
                             seats[rowLetterindex][seatNo - 1] = 1;
                             System.out.println();
-                            System.out.println("Enter your name:- ");
+                            System.out.print("Enter your name:- ");
                             String name = s.next();
-                            System.out.println("Enter your surname:- ");
+                            System.out.print("Enter your surname:- ");
                             String surname = s.next();
-                            System.out.println("Enter your email:- ");
+                            System.out.print("Enter your email:- ");
                             String email = s.next();
                             Person person = new Person(name, surname, email);
                             if (seatNo < 6) {
@@ -119,6 +119,7 @@ public class PlaneManagement {
                                     ticketsArray[newCount] = ticket;
                                     String path = String.valueOf(rowLetter) + seatNo + ".txt";
                                     ticket.save(path, person.printall(), "The reserved seat is " + rowLetter + seatNo);
+                                    System.out.println("The price of the ticket is:-"+ticket.getPrice()+"\u00a3");
                                     System.out.println("Your Booking has been reserved");
                                     break;
 
@@ -172,7 +173,7 @@ public class PlaneManagement {
         boolean validInput=true;
         while (validInput) {
             try {
-                System.out.println("Enter the row Letter:- ");
+                System.out.print("Enter the row Letter:- ");
                 char rowLetter = s.next().charAt(0);
                 rowLetter = Character.toUpperCase(rowLetter);
                 int rowLetterindex = rowLettercheck(rowLetter);
@@ -320,7 +321,7 @@ public class PlaneManagement {
     private static int getInt(String prompt) {
         while(true) {
             try {
-                System.out.println(prompt);
+                System.out.print(prompt);
                 int num= s.nextInt();
                 return num;
             } catch (InputMismatchException e) {

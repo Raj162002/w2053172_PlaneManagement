@@ -4,5 +4,7 @@ public class Main {
         Person newObj=new Person("Rajeevan","Ramakumar","ram@gmail.com");
         Ticket secondObj=new Ticket('A',12,23.3,newObj);
         secondObj.printTicket();
+        String raj="Raj";
+//        raj= Character.toChars(raj);
     }
 }
