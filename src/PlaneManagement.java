@@ -283,7 +283,7 @@ public class PlaneManagement {
                 System.out.println("End of this ticket");
             }
         }
-        System.out.println("The total sales amount for tickets is "+totalSales);
+        System.out.println("The total sales amount for tickets is "+totalSales+"\u00A3");
 
     }
     private static void search_ticket() {
