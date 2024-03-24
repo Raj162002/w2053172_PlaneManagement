@@ -183,7 +183,7 @@ public class PlaneManagement {
         while (validInput) {
             try {
 
-                char rowLetter = getRowletter()
+                char rowLetter = getRowletter();
                 rowLetter = Character.toUpperCase(rowLetter);
                 int rowLetterindex = rowLettercheck(rowLetter);
                 int maxseatno = getMaxseatno(rowLetterindex);
