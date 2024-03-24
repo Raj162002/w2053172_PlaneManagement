@@ -50,7 +50,6 @@ public class PlaneManagement {
             }
             System.out.println();
             option = getInt("Please select an option:- "); //To get the option from the user with getInt method
-//            s.nextLine(); //To clear the buffer
             switch (option) { //Switch case to select an option
                 case 1:
                     buy_seat(); //Calls the method to buy a seat
@@ -124,7 +123,7 @@ public class PlaneManagement {
                                 if (ticketsArray[newCount] == null) { //Checking if the array element is empty and adding the ticket
                                     ticketsArray[newCount] = ticket;
                                     String path = String.valueOf(rowLetter) + seatNo + ".txt"; //Creating the path for the ticket file
-                                    ticket.save(path, person.printall(), "The reserved seat is " + rowLetter + seatNo); //Saving the ticket information to a file
+                                    ticket.save(path, person.printall(), "Price of this seat:- "+ticket.getPrice()+"\nThe reserved seat is " + rowLetter + seatNo); //Saving the ticket information to a file
                                     System.out.println("The price of the ticket is:- "+ticket.getPrice()+"\u00a3");
                                     System.out.println("Your Booking has been reserved");
                                     System.out.println("You will be redirected to the main menu");
