@@ -1,14 +1,17 @@
 public class Person {
+    // Declare private variables for name, surname and email
     private String name;
     private String surname;
     private String email;
 
+    // Constructor for Person class
     public Person(String name, String surname, String email) {
         this.name = name;
         this.surname = surname;
         this.email = email;
     }
 
+    // Getter and setter methods for name, surname and email
     public String getName() {
         return name;
     }
@@ -32,6 +35,8 @@ public class Person {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    // Method to print all the details of a person
     public String printall(){
 //        System.out.println("Name:- "+this.name);
 //        System.out.println("Surname:- "+this.surname);

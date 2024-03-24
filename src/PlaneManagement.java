@@ -1,39 +1,43 @@
+//Importing required libraries
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class PlaneManagement {
-    private static int[][] seats = new int[4][];
-    private static Scanner s = new Scanner(System.in);
 
-    private static Ticket[] ticketsArray=new Ticket[52];
+    private static int[][] seats = new int[4][]; // 2D array to store the seats
+    private static Scanner s = new Scanner(System.in); // Scanner object to take input from the user
+
+    private static Ticket[] ticketsArray=new Ticket[52]; // Array to store the tickets
 
     public static void main(String[] args) {
-        seats[0] = new int[14];
-        seats[1] = new int[12];
-        seats[2] = new int[12];
-        seats[3] = new int[14];
+        seats[0] = new int[14]; // Initializing the 2D array for the first row with 14 seats
+        seats[1] = new int[12]; // Initializing the 2D array for the second row with 12 seats
+        seats[2] = new int[12]; // Like the previous one
+        seats[3] = new int[14]; // Like the first one
         System.out.println("Welcome to the Plane Management application ");
         int option;
+        //Menu options
         do {
 
-            for (int count1 = 0; count1 < 50; count1++) {
+            for (int count1 = 0; count1 < 50; count1++) { //To print the stars
                 System.out.print("*");
             }
             System.out.println();
             System.out.print("*");
-            for (int count2 = 0; count2 < 18; count2++) {
+            for (int count2 = 0; count2 < 18; count2++) { //To print the white spaces
                 System.out.print(" ");
             }
             System.out.print("MENU OPTIONS");
-            for (int count2 = 0; count2 < 18; count2++) {
+            for (int count2 = 0; count2 < 18; count2++) { //To print the white spaces
                 System.out.print(" ");
             }
             System.out.print("*");
             System.out.println();
-            for (int count1 = 0; count1 < 50; count1++) {
+            for (int count1 = 0; count1 < 50; count1++) { //To print the stars
                 System.out.print("*");
             }
             System.out.println();
+            //Print the available options
             System.out.println("1) Buy a seat");
             System.out.println("2) Cancel a seat");
             System.out.println("3) Find first available seat");
@@ -41,30 +45,30 @@ public class PlaneManagement {
             System.out.println("5) Print tickets information and total sales");
             System.out.println("6) Search ticket");
             System.out.println("0) Quit");
-            for (int count1 = 0; count1 < 50; count1++) {
+            for (int count1 = 0; count1 < 50; count1++) { //To print the stars
                 System.out.print("*");
             }
             System.out.println();
-            option = getInt("Please select an option:- ");
-            s.nextLine();
-            switch (option) {
+            option = getInt("Please select an option:- "); //To get the option from the user with getInt method
+//            s.nextLine(); //To clear the buffer
+            switch (option) { //Switch case to select an option
                 case 1:
-                    buy_seat();
+                    buy_seat(); //Calls the method to buy a seat
                     break;
                 case 2:
-                    cancel_seat();
+                    cancel_seat(); //Calls the method to cancel a seat
                     break;
                 case 3:
-                    find_first_available();
+                    find_first_available(); //Calls the method to find the first available seat
                     break;
                 case 4:
-                    show_seating_plan();
+                    show_seating_plan(); //Calls the method to show the seating plan
                     break;
                 case 5:
-                    print_tickets_info();
+                    print_tickets_info(); //Calls the method to print the tickets information
                     break;
                 case 6:
-                    search_ticket();
+                    search_ticket(); //Calls the method to search for a ticket
                     break;
                 case 0:
                     System.out.println("Thank you for using the Plane Management application");
@@ -73,22 +77,23 @@ public class PlaneManagement {
                     System.out.println("Invalid option Try again");
                     break;
             }
-        } while (option != 0);
+        } while (option != 0); //Do-While loop until the user selects 0
         s.close();
     }
 
 
+    //Method to buy a seat
     private static void buy_seat() {
-        boolean validInput= true;
+        boolean validInput= true; //Boolean variable to used for the while loop below
         while(validInput) {
             try {
                 int price_seat;
-                System.out.print("Enter the row Letter:- ");
-                char rowLetter = s.next().charAt(0);
-                rowLetter = Character.toUpperCase(rowLetter);
-                int rowLetterindex = rowLettercheck(rowLetter);
-                int seatNo = getInt("Enter the desired seat number:- ");
-                if (seats[rowLetterindex][seatNo - 1] == 0) {
+                char rowLetter = getRowletter(); //Getting input from user using a user defined method
+                rowLetter = Character.toUpperCase(rowLetter); //Changing it to uppercase
+                int rowLetterindex = rowLettercheck(rowLetter);//Getting the index of the row letter using a user defined method
+                int maxseatno = getMaxseatno(rowLetterindex);//Getting the maximum seat number for the row
+                int seatNo = getInt("Enter the desired seat number"+"("+"1-"+maxseatno+")"+":- ");//Getting the seat number from the user
+                if (seats[rowLetterindex][seatNo - 1] == 0) { //Checking if the seat is available
                     System.out.println("The seat is available");
                     while (true) {
                         System.out.println("Would you like to purchase this seat? (Type yes/no)");
@@ -98,13 +103,14 @@ public class PlaneManagement {
 
                             seats[rowLetterindex][seatNo - 1] = 1;
                             System.out.println();
+                            //Getting some information about the user
                             System.out.print("Enter your name:- ");
                             String name = s.next();
                             System.out.print("Enter your surname:- ");
                             String surname = s.next();
-                            System.out.print("Enter your email:- ");
-                            String email = s.next();
-                            Person person = new Person(name, surname, email);
+                            String email = getemail();
+                            Person person = new Person(name, surname, email); //Creating the person object
+                            //Setting the price of the seat based on the seat number
                             if (seatNo < 6) {
                                 price_seat = 200;
                             } else if (seatNo < 10) {
@@ -113,14 +119,15 @@ public class PlaneManagement {
                             } else {
                                 price_seat = 180;
                             }
-                            Ticket ticket = new Ticket(rowLetter, seatNo, price_seat, person);
-                            for (int newCount = 0; newCount < ticketsArray.length; newCount++) {
-                                if (ticketsArray[newCount] == null) {
+                            Ticket ticket = new Ticket(rowLetter, seatNo, price_seat, person); //Creating the ticket object
+                            for (int newCount = 0; newCount < ticketsArray.length; newCount++) { //Loop to store the ticket in the array
+                                if (ticketsArray[newCount] == null) { //Checking if the array element is empty and adding the ticket
                                     ticketsArray[newCount] = ticket;
-                                    String path = String.valueOf(rowLetter) + seatNo + ".txt";
-                                    ticket.save(path, person.printall(), "The reserved seat is " + rowLetter + seatNo);
-                                    System.out.println("The price of the ticket is:-"+ticket.getPrice()+"\u00a3");
+                                    String path = String.valueOf(rowLetter) + seatNo + ".txt"; //Creating the path for the ticket file
+                                    ticket.save(path, person.printall(), "The reserved seat is " + rowLetter + seatNo); //Saving the ticket information to a file
+                                    System.out.println("The price of the ticket is:- "+ticket.getPrice()+"\u00a3");
                                     System.out.println("Your Booking has been reserved");
+                                    System.out.println("You will be redirected to the main menu");
                                     break;
 
                                 }
@@ -142,7 +149,7 @@ public class PlaneManagement {
                 }
                 validInput=false;
             } catch (ArrayIndexOutOfBoundsException e) {
-                System.out.println("Invalid seat number or row letter");
+                System.out.println("Seat number out of range");
             } catch (IllegalArgumentException e) {
                 System.out.println("Invalid input for row letter");
             }
@@ -152,6 +159,7 @@ public class PlaneManagement {
 
     }
 
+    //Method to check the row letter and return the index value
     private static int rowLettercheck(char letter1) {
         switch (letter1) {
             case 'A':
@@ -163,23 +171,24 @@ public class PlaneManagement {
             case 'D':
                 return 3;
             default:
-                throw new IllegalArgumentException("Invalid row letter");
+                throw new IllegalArgumentException("Invalid row letter"); //Throwing an exception if the row letter is invalid and catching it in the main method
         }
 
 
     }
 
+    //Method to cancel a seat this is similar to buy seat
     private static void cancel_seat() {
         boolean validInput=true;
         while (validInput) {
             try {
-                System.out.print("Enter the row Letter:- ");
+
                 char rowLetter = s.next().charAt(0);
                 rowLetter = Character.toUpperCase(rowLetter);
                 int rowLetterindex = rowLettercheck(rowLetter);
-                int seatNo = getInt("Enter the desired seat number:- ");
+                int maxseatno = getMaxseatno(rowLetterindex);
+                int seatNo = getInt("Enter the desired seat number"+"("+"1-"+maxseatno+")"+":- ");
                 if (seats[rowLetterindex][seatNo - 1] == 1) {
-                    System.out.println("The seat is reserved");
                     while (true) {
                         System.out.println("Would you like to cancel this seat? (Type yes/no)");
                         String purchase = s.next();
@@ -190,9 +199,9 @@ public class PlaneManagement {
                                 if(ticketsArray[newCount] != null) {
                                     if ((ticketsArray[newCount].getRow() == rowLetter) && (ticketsArray[newCount].getSeat() == seatNo)) {
                                         String path = String.valueOf(rowLetter) + seatNo + ".txt";
-                                        ticketsArray[newCount].delete(path);
+                                        ticketsArray[newCount].delete(path); //Delete the ticket txt file
                                         ticketsArray[newCount] = null;
-                                        //Delete the ticket txt file
+                                        //Delete the ticket
 
                                     }
                                 }
@@ -223,7 +232,7 @@ public class PlaneManagement {
 
     }
 
-    private static int[] linear_search(){
+    private static int[] linear_search(){ //A simple linear search algorithm
         for(int count1=0;count1<seats.length;count1++ ){
             for(int count2=0; count2<seats[count1].length;count2++){
                 if (seats[count1][count2]==0){
@@ -234,7 +243,7 @@ public class PlaneManagement {
         return null;
     }
 
-    private static void find_first_available(){
+    private static void find_first_available(){ //Method to find the first available seat
         try {
             int[] seatinfo=linear_search();
             char rowLetter = rownum_converter(seatinfo[0]);
@@ -259,21 +268,33 @@ public class PlaneManagement {
                 return ' ';
         }
     }
-    private static void show_seating_plan(){
+    private static void show_seating_plan(){ //Method to show the seating plan
+        int printcount; //Variable to keep track of the number of seats printed so that space can be made
         for(int[] element1: seats){
             System.out.println();
+            printcount=1;
             for (int element2: element1){
                 if (element2==0){
                     System.out.print(" O ");
+                    printcount+=1;
+                    if(printcount==7){
+                        System.out.print(" O  ");
+                        printcount+=1;
+                    }
                 }
                 else {
                     System.out.print(" X ");
+                    printcount+=1;
+                    if(printcount==7){
+                        System.out.print(" X  ");
+                        printcount+=1;
+                    }
                 }
             }
         }
         System.out.println();
     }
-    private static void print_tickets_info(){
+    private static void print_tickets_info(){ //Method to print the all tickets information
         double totalSales=0;
         for (int i=0; i<ticketsArray.length; i++){
             if (ticketsArray[i] !=null) {
@@ -286,11 +307,10 @@ public class PlaneManagement {
         System.out.println("The total sales amount for tickets is "+totalSales+"\u00A3");
 
     }
-    private static void search_ticket() {
+    private static void search_ticket() { //Method to search for a ticket
         while (true) {
             try {
-                System.out.println("Enter the row letter ");
-                char rowLetter = s.next().charAt(0);
+                char rowLetter = getRowletter();
                 rowLetter = Character.toUpperCase(rowLetter);
                 int rowLetterindex = rowLettercheck(rowLetter);
                 int seatNo = getInt("Enter the desired seat number:- ");
@@ -316,7 +336,7 @@ public class PlaneManagement {
         }
     }
 
-    private static int getInt(String prompt) {
+    private static int getInt(String prompt) { //Method to get an integer from the user and validate it
         while(true) {
             try {
                 System.out.print(prompt);
@@ -328,6 +348,37 @@ public class PlaneManagement {
             }
         }
 
+    }
+
+    private static String getemail(){ //Method to get the email from the user and validate it
+        String email;
+        while(true){
+            System.out.print("Enter your email:- ");
+            email=s.next();
+            if (email.contains("@") && email.contains(".")){
+                return email;
+            }
+            else{
+                System.out.println("Invalid email, please try again");
+            }
+        }
+    }
+    private static int getMaxseatno(int rowLetterindex){ //Method to get the maximum seat number for a row
+        return seats[rowLetterindex].length;
+    }
+    private static char getRowletter(){ //Method to get the row letter from the user and validate it
+        String rowLetter_check;
+        while(true){
+            s.nextLine();
+            System.out.print("Enter the row letter(A-D):- ");
+            rowLetter_check=s.next();
+            if (rowLetter_check.length()==1){
+                return rowLetter_check.charAt(0);
+            }
+            else{
+                System.out.println("Please enter one character");
+            }
+        }
     }
 
 
